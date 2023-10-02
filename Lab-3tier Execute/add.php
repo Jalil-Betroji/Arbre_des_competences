@@ -47,12 +47,6 @@ include_once("Templates/header.php");
             </div>
         </div>
         <div class="form-group">
-            <label for="studentRoll" class="col-sm-2 control-label">Roll</label>
-            <div class="col-sm-4">
-                <input type="text"  name="studentRoll" id="studentRoll" class="form-control" placeholder="Roll" />
-            </div>
-        </div>
-        <div class="form-group">
             <label for="studentEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-4">
                 <input type="email"  name="studentEmail" id="studentEmail" class="form-control" placeholder="Email" />
