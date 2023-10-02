@@ -11,7 +11,7 @@ if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Ad
     $studentEmail = $_POST['studentEmail'];
     $studentDateOfBirth = $_POST['studentDateOfBirth'];
 
-    $newStudent = new Student(0, $studentRoll, $studentName, $studentEmail, $studentDateOfBirth);
+    $newStudent = new Student(0, $studentName, $studentEmail, $studentDateOfBirth);
     $addStudentResult = $studentBllObj->AddStudent($newStudent);
 
     if($addStudentResult > 0) {
@@ -45,12 +45,6 @@ include_once("Templates/header.php");
             <label for="studentName" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-4">
                 <input type="text"  name="studentName" id="studentName" class="form-control" placeholder="Name" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="studentRoll" class="col-sm-2 control-label">Roll</label>
-            <div class="col-sm-4">
-                <input type="text"  name="studentRoll" id="studentRoll" class="form-control" placeholder="Roll" />
             </div>
         </div>
         <div class="form-group">

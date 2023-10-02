@@ -11,11 +11,10 @@ if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Upd
     $studentBllObj = new StudentBLO();
     $studentId = $_POST['studentId'];
     $studentName = $_POST['studentName'];
-    $studentRoll = $_POST['studentRoll'];
     $studentEmail = $_POST['studentEmail'];
     $studentDateOfBirth = $_POST['studentDateOfBirth'];
 
-    $aStudent = new Student($studentId, $studentRoll, $studentName, $studentEmail, $studentDateOfBirth);
+    $aStudent = new Student($studentId, $studentName, $studentEmail, $studentDateOfBirth);
     $updateResult = $studentBllObj->UpdateStudent($aStudent);
 
     if($updateResult > 0) {
@@ -35,7 +34,7 @@ if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Upd
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
     }
-    $studentBllObj = new StudentBLL();
+    $studentBllObj = new StudentBLO();
     $aStudent = $studentBllObj->GetStudent($studentId);
 
     if ($action == 'add') {
@@ -75,12 +74,6 @@ include_once("Templates/header.php");
             <div class="col-sm-4">
 
                 <input type="text" value="<?php echo $aStudent->GetName(); ?>" name="studentName" id="studentName" class="form-control" placeholder="Name" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="studentRoll" class="col-sm-2 control-label">Roll</label>
-            <div class="col-sm-4">
-                <input type="text" value="<?php echo $aStudent->GetRoll(); ?>" name="studentRoll" id="studentRoll" class="form-control" placeholder="Roll" />
             </div>
         </div>
         <div class="form-group">
