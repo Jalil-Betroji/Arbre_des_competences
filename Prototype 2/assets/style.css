@@ -1,0 +1,39 @@
+body {
+    margin: 5rem !important;
+}
+table {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px black solid;
+    border-radius: 3px 3px 3px;
+    width: 100%;
+    text-align: center ;
+}
+th{
+    background-color: rgb(255, 230, 71);
+    text-align: center;
+}
+ /* Alternating background colors for rows */
+ tr:nth-child(even) {
+    background-color: #d9e5e0;
+    height: 2rem;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000000 !important;
+    text-align: center;
+}
+.hide {
+    display: none;
+}
+
+/* Responsive styles for the table */
+@media (max-width: 600px) {
+    th,
+    td {
+        padding: 4px;
+    }
+}

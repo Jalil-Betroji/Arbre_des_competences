@@ -1,0 +1,18 @@
+body {
+    margin: 5rem;
+}
+table {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px black solid;
+    width: 100%;
+    text-align: center;
+}
+th{
+    background-color: green;
+    border: 1px rgb(3, 3, 3) solid;
+}
+tr{
+    background-color: rgb(188, 188, 188);
+    border: 1px rgb(0, 0, 0) solid;
+    height: 2rem;
+}
