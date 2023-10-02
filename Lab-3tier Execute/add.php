@@ -5,7 +5,7 @@ $errorMessage = '';
 
 if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Add Student' ) {
 
-    $studentBllObj = new StudentBLL();
+    $studentBllObj = new StudentBLO();
     $studentName = $_POST['studentName'];
     $studentRoll = $_POST['studentRoll'];
     $studentEmail = $_POST['studentEmail'];

@@ -13,7 +13,6 @@ Date: 4/6/2012 5:22:59 PM
 -- ----------------------------
 CREATE TABLE `student` (
   `Id` int(11) NOT NULL auto_increment,
-  `Roll` varchar(50) default NULL,
   `Name` varchar(255) default NULL,
   `Email` varchar(255) default NULL,
   `DateOfBirth` datetime default NULL,
@@ -23,5 +22,5 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', '028', 'John Doe', 'jdoe@example.org', null);
-INSERT INTO `student` VALUES ('2', null, null, null, null);
+INSERT INTO `student` VALUES ('1', 'John Doe', 'jdoe@example.org', null);
+INSERT INTO `student` VALUES ('2', null, null, null);

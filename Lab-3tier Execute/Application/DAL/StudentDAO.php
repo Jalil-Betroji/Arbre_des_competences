@@ -35,7 +35,7 @@ class StudentDAO
         $allTraineesData = $raw_result->fetchAll(PDO::FETCH_ASSOC);
         $dataArr = [];
         foreach ($allTraineesData as $data) {
-            $traineeInfo = new Student($data['Id'], $data['Roll'], $data['Name'], $data['Email'], $data['DateOfBirth']);
+            $traineeInfo = new Student($data['Id'], $data['Name'], $data['Email'], $data['DateOfBirth']);
             array_push($dataArr, $traineeInfo);
         }
 
@@ -50,6 +50,10 @@ class StudentDAO
      */
     public function GetStudent($studentId)
     {
+        if($studentId <= 0) {
+            // TODO: return type should be same datatype
+            return false;
+        }
         $sql = "SELECT * FROM Student WHERE Id = :studentId";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
@@ -58,7 +62,7 @@ class StudentDAO
         $aStudent = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($aStudent !== false) {
-            $studentObj = new Student($aStudent['Id'], $aStudent['Roll'], $aStudent['Name'], $aStudent['Email'], $aStudent['DateOfBirth']);
+            $studentObj = new Student($aStudent['Id'], $aStudent['Name'], $aStudent['Email'], $aStudent['DateOfBirth']);
             return $studentObj;
         }
 
@@ -74,9 +78,8 @@ class StudentDAO
     public function AddStudent($student)
     {
 
-        $sql = "INSERT INTO Student (`Roll`, `Name`, `Email`, `DateOfBirth`)
+        $sql = "INSERT INTO Student ( `Name`, `Email`, `DateOfBirth`)
                 VALUES (
-                  :roll,
                   :name,
                   :email,
                   :dateOfBirth
@@ -84,12 +87,10 @@ class StudentDAO
 
         $stmt = $this->db->prepare($sql);
 
-        $roll = $student->GetRoll();
         $name = $student->GetName();
         $email = $student->GetEmail();
         $dateOfBirth = $student->GetDateOfBirth();
 
-        $stmt->bindParam(':roll', $roll);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':dateOfBirth', $dateOfBirth);
@@ -112,7 +113,6 @@ class StudentDAO
 
         $sql = "UPDATE Student
                 SET
-                    Roll='" . $student->GetRoll() . "',
                     Name='" . $student->GetName() . "',
                     Email='" . $student->GetEmail() . "',
                     DateOfBirth='" . $student->GetDateOfBirth() . "'
@@ -121,35 +121,6 @@ class StudentDAO
         $stm = $this->db->prepare($sql);
         $stm->execute();
         return $stm->rowCount();
-    }
-
-    /**
-     * Search Student By Name
-     *
-     * @param string $studentName
-     * @return array
-     */
-    public function SearchStudentByName($studentName)
-    {
-        $sql = "SELECT * FROM Student WHERE Name LIKE :studentName";
-        $searchStudent = $this->db->prepare($sql);
-        $searchStudent->bindValue(':studentName', '%' . $studentName . '%', PDO::PARAM_STR);
-        $searchStudent->execute();
-        $searchResults = $searchStudent->fetchAll(PDO::FETCH_ASSOC);
-        $listOfStudent = [];
-    
-        foreach ($searchResults as $searched) {
-            $id = $searched['Id'];
-            $roll = $searched['Roll'];
-            $name = $searched['Name'];
-            $email = $searched['Email'];
-            $dateOfBirth = $searched['DateOfBirth'];
-    
-            $student = new Student($id, $roll, $name, $email, $dateOfBirth);
-            $listOfStudent[] = $student;
-        }
-    
-        return $listOfStudent;
     }
 
     /**
@@ -166,27 +137,6 @@ class StudentDAO
         $stm = $this->db->prepare($sql);
         $stm->execute();
         return $stm->rowCount();
-    }
-
-    /**
-     * Checks whether given Roll exists or not
-     *
-     * @param string $roll
-     * @param int $id
-     * @return bool
-     */
-    public function IsRollExists($roll, $id = 0)
-    {
-
-        $sql = "SELECT * FROM Student WHERE Roll='" . $roll . "' AND Id != $id";
-        $raw_result = $this->db->prepare($sql);
-        $raw_result->execute();
-        $ifRoll = $raw_result->fetch();
-        if ($ifRoll > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**

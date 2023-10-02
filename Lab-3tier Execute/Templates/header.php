@@ -43,12 +43,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="add.php"><span class="glyphicon glyphicon-plus"></span> Add New</a></li>
             </ul>
-            <form action="search.php" method="post" name="studentSearchForm" id="studentSearchForm" class="navbar-form navbar-right navbar-input-group" role="search">
-                <div class="form-group">
-                    <input type="text" name="studentNameSearch" id="studentNameSearch" value="<?php if (isset($search_string) && $search_string != '') { echo $search_string; } ?>" class="form-control" placeholder="Search for students" />
-                </div>
-                <input type="submit" name="studentSubmitButton" id="studentSubmitButton" value="Search" class="btn btn-default" />
-            </form>
+          
         </div><!--/.nav-collapse -->
     </div>
 </nav>
