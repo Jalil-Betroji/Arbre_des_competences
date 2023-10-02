@@ -66,10 +66,28 @@ function TestDeleteStudents($id) {
 /*===============================================
 == // test function 
 ===============================================*/
+// print_r($checkId);
+
 function TestCheackIdExists($id) {
     $testFunctions = new StudentDAO();
     $checkId =  $testFunctions->IsIdExists($id);
-    return $checkId;
+    print_r($checkId);
+
 }
-TestCheackIdExists(2);
+$id = 1;
+TestCheackIdExists($id);
+
+/*===============================================
+== // test function 
+===============================================*/
+// print_r($checkId);
+
+function TestCheackIsEmailExists($email, $id) {
+    $testFunctions = new StudentDAO();
+    $checkEmail =  $testFunctions->IsEmailExists($email, $id);
+    print_r($checkEmail);
+
+}
+$email = "adnan@gmail.com";
+TestCheackIsEmailExists($email, 0);
 ?>
