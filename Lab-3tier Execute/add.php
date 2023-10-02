@@ -7,11 +7,10 @@ if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Ad
 
     $studentBllObj = new StudentBLO();
     $studentName = $_POST['studentName'];
-    $studentRoll = $_POST['studentRoll'];
     $studentEmail = $_POST['studentEmail'];
     $studentDateOfBirth = $_POST['studentDateOfBirth'];
 
-    $newStudent = new Student(0, $studentRoll, $studentName, $studentEmail, $studentDateOfBirth);
+    $newStudent = new Student(0, $studentName, $studentEmail, $studentDateOfBirth);
     $addStudentResult = $studentBllObj->AddStudent($newStudent);
 
     if($addStudentResult > 0) {
